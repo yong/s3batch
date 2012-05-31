@@ -6,6 +6,7 @@ require File.expand_path(File.dirname(__FILE__) + '/s3batch/happening_patch')
 require File.expand_path(File.dirname(__FILE__) + '/s3batch/multi_delete')
 require File.expand_path(File.dirname(__FILE__) + '/s3batch/batch_upload')
 require File.expand_path(File.dirname(__FILE__) + '/s3batch/website_enabler')
+require File.expand_path(File.dirname(__FILE__) + '/s3batch/bucket_creator')
 
 #ruby s3batch.rb S3ID S3KEY BUCKET DIR
 if $0 == __FILE__
@@ -15,7 +16,8 @@ if $0 == __FILE__
   dir = ARGV[3]
   pattern = ARGV[4] || "**/*"
 
-  S3Batch::WebsiteEnabler.run s3id, s3key, bucket
+  S3Batch::BucketCreator.run s3id, s3key, bucket
+  #S3Batch::WebsiteEnabler.run s3id, s3key, bucket
   #S3Batch::Upload.run s3id, s3key, bucket, dir, pattern
   #S3Batch::Delete.run s3id, s3key, bucket, [dir]
 end
