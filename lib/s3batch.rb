@@ -1,5 +1,6 @@
 require 'happening'
 require 'nokogiri'
+require 'mime/types'
 
 require File.expand_path(File.dirname(__FILE__) + '/s3batch/happening_patch')
 require File.expand_path(File.dirname(__FILE__) + '/s3batch/multi_delete')

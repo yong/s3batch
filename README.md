@@ -11,6 +11,7 @@ Usage
 S3Batch::Upload.run s3id, s3key, bucket, dir
 
 There is optional pattern parameter, for example:
+
 S3Batch::Upload.run s3id, s3key, bucket, dir, "**/*.rb"
 
 It uploads everything from 'dir' that matches 'pattern' to s3 'bucket'. And it will check if a file is changed by comparing the md5 returned by s3 bucket listing API, and only upload files that are changed.

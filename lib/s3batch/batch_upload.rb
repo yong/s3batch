@@ -72,7 +72,10 @@ module S3Batch
           if keys[key] != md5
             puts "uploading #{key} to #{@bucket}"
             item = Happening::S3::Item.new(@bucket, key, @options)
-            item.put(content, :on_error => on_error, :on_success => on_success)
+            headers = {}
+            type = MIME::Types.type_for(key).first
+            headers['Content-Type'] = type if type
+            item.put(content, :on_error => on_error, :on_success => on_success, :headers => headers)
             manager.add
           else
             puts "ignore #{key}, no change"
@@ -81,6 +84,5 @@ module S3Batch
 
         manager.end_adding
       end
-    
   end
 end

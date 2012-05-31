@@ -10,5 +10,6 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/yong/s3batch"
   s.add_dependency(%q<happening>)
   s.add_dependency(%q<nokogiri>)
+  s.add_dependency(%q<mime-types>)
 end
 
