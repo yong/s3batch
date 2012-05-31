@@ -1,5 +1,5 @@
 module S3Batch
-  class DeleteCollection < Happening::S3::Item
+  class Delete < Happening::S3::Item
     MULTIPLE_DELETE_LIMIT = 1000
 
     def initialize(bucket, keys, options = {})
@@ -30,7 +30,7 @@ module S3Batch
       EM.run {
         on_error = Proc.new {|response| puts "An error occured: #{response.response}"; EM.stop }
         on_success = Proc.new {|response| puts "Deleted!"; EM.stop }
-        items = DeleteCollection.new bucket, keys, :aws_access_key_id => s3id, :aws_secret_access_key => s3key, :protocol => 'http'
+        items = Delete.new bucket, keys, :aws_access_key_id => s3id, :aws_secret_access_key => s3key, :protocol => 'http'
         items.delete(:on_error => on_error, :on_success => on_success) 
       }
     end

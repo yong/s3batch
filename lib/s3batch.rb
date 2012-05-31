@@ -13,6 +13,6 @@ if $0 == __FILE__
   dir = ARGV[3]
   pattern = ARGV[4] || "**/*"
 
-  S3Batch::UploadCollection.run s3id, s3key, bucket, dir, pattern
+  S3Batch::Upload.run s3id, s3key, bucket, dir, pattern
 end
 

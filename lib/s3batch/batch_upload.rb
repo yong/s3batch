@@ -21,7 +21,7 @@ module S3Batch
     end
   end
 
-  class UploadCollection
+  class Upload
     def initialize(bucket, dir, pattern, options = {})
       @bucket = bucket
       @dir = dir.end_with?('/') ? dir : dir + "/"
@@ -39,7 +39,7 @@ module S3Batch
 
     def self.run s3id, s3key, bucket, dir, pattern
       EM.run {
-        items = UploadCollection.new bucket, dir, pattern, :aws_access_key_id => s3id, :aws_secret_access_key => s3key, :protocol => 'http', :permissions => 'public-read'
+        items = Upload.new bucket, dir, pattern, :aws_access_key_id => s3id, :aws_secret_access_key => s3key, :protocol => 'http', :permissions => 'public-read'
         items.upload 
       }
     end
