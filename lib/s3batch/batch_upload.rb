@@ -37,7 +37,7 @@ module S3Batch
       }
     end
 
-    def self.run s3id, s3key, bucket, dir, pattern
+    def self.run s3id, s3key, bucket, dir, pattern = "**/*"
       EM.run {
         items = S3Batch::Upload.new bucket, dir, pattern, :aws_access_key_id => s3id, :aws_secret_access_key => s3key, :protocol => 'http', :permissions => 'public-read'
         items.upload 
