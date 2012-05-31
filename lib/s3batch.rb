@@ -15,5 +15,7 @@ if $0 == __FILE__
   pattern = ARGV[4] || "**/*"
 
   S3Batch::Upload.run s3id, s3key, bucket, dir, pattern
+ 
+  #S3Batch::Delete.run s3id, s3key, bucket, [dir]
 end
 

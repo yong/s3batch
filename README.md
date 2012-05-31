@@ -6,7 +6,7 @@ Install
 =======
 gem install s3batch
 
-Usage
+Upload api
 =======
 S3Batch::Upload.run s3id, s3key, bucket, dir
 
@@ -17,6 +17,12 @@ S3Batch::Upload.run s3id, s3key, bucket, dir, "**/*.rb"
 It uploads everything from 'dir' that matches 'pattern' to s3 'bucket'. And it will check if a file is changed by comparing the md5 returned by s3 bucket listing API, and only upload files that are changed.
 
 The advantage over s3sync or other solution is the upload requests run in parallel by using EvetMachine's reactor pattern ( https://github.com/eventmachine/eventmachine ) and happening gem ( https://github.com/peritor/happening )
+
+Delete api
+=======
+S3Batch::Delete.run s3id, s3key, bucket, keys_array
+
+The deletion is via Multi-Object Delete API ( http://intridea.com/posts/deleting-s3-objects-ruby )
 
 Copyright
 =======

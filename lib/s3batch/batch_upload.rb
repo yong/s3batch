@@ -39,7 +39,7 @@ module S3Batch
 
     def self.run s3id, s3key, bucket, dir, pattern
       EM.run {
-        items = Upload.new bucket, dir, pattern, :aws_access_key_id => s3id, :aws_secret_access_key => s3key, :protocol => 'http', :permissions => 'public-read'
+        items = S3Batch::Upload.new bucket, dir, pattern, :aws_access_key_id => s3id, :aws_secret_access_key => s3key, :protocol => 'http', :permissions => 'public-read'
         items.upload 
       }
     end
@@ -58,7 +58,7 @@ module S3Batch
       end
 
       def check_md5_and_upload keys
-        manager = TaskManager.new
+        manager = S3Batch::TaskManager.new
         on_error = Proc.new {|response| puts "An error occured: #{response.response_header.status}"; manager.remove; }
         on_success = Proc.new {|response| manager.remove; }
 
