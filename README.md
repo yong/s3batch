@@ -24,6 +24,16 @@ S3Batch::Delete.run s3id, s3key, bucket, keys_array
 
 The deletion is via Multi-Object Delete API ( http://intridea.com/posts/deleting-s3-objects-ruby )
 
+Website api
+=======
+S3Batch::WebsiteEnabler.run s3id, s3key, bucket
+
+Hosting static website on s3 ( http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteHosting.html )
+
+TODO
+=======
+S3's list bucket api has 1000 objects limit
+
 Copyright
 =======
 MIT license

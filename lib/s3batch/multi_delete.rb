@@ -31,7 +31,7 @@ module S3Batch
         on_error = Proc.new {|response| puts "An error occured: #{response.response}"; EM.stop }
         on_success = Proc.new {|response| puts "Deleted!"; EM.stop }
         items = S3Batch::Delete.new bucket, keys, :aws_access_key_id => s3id, :aws_secret_access_key => s3key, :protocol => 'http'
-        items.delete(:on_error => on_error, :on_success => on_success) 
+        items.delete(:on_error => on_error, :on_success => on_success)
       }
     end
   end

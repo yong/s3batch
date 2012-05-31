@@ -7,6 +7,7 @@ module Happening
     def canonical_request_description(method, path, headers = {}, expires = nil)
       description = old_canonical_request_description(method, path, headers, expires)
       description << '?delete'  if path[/[&?]delete($|&|=)/]
+      description << '?website'  if path[/[&?]website($|&|=)/]
       description
     end
   end
